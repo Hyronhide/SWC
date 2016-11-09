@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Areas 
+{% endblock  %}
+
+{% block content %}
+	<div >
+		<table class="table table-hover">
+			<theader>
+				<tr>
+					<th>AREA</th>
+					<th>ENCARGADO</th>	
+					<th></th>				
+				</tr>
+			</theader>
+			{% for a in areas  %}
+				<tbody>
+					<tr>
+						<td>{{ a.nombre }}</td>
+						<td>{{ a.encargado }}</td>												
+						<td><a class="btn" href="/programas_areas/{{a.nombre}}">Ver Programas</a></td>													
+					</tr>			
+				</tbody>			
+			{% endfor %}
+		</table>	
+	</div>
+	
+{% endblock  %}
+

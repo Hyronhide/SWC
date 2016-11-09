@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Fichas 
+{% endblock  %}
+
+{% block content %}
+
+	<div>
+		<head>
+		<title>Consulta:{% if query %} Results{% endif %}</title>
+		</head>
+		<form action="." method="GET">
+			<label for="q">Ingrese su busqueda: </label>
+			<input type="text" name="q" value="{{ query|escape }}" title="buscar">
+			<br>			
+			<button  style="btn" class="btn btn-primary" type="submit" >Buscar </button>
+		</form>
+	</div>
+	<div >
+		{% if query %}
+		<h5>Resultados para "{{ query|escape }}":</h5>
+			{% if resultsFichas or resultsProgramas %}
+				{% if resultsFichas %}
+					<table class="table table-hover">
+						<theader>
+							<tr>
+								<th>NUMERO DE FICHA</th>
+								<th>PROGRAMA</th>	
+								<th></th>												
+							</tr>
+						</theader>
+						{% for r in resultsFichas %}					
+							<tbody>
+								<tr>
+									<td>{{ r.identificador }}</td>
+									<td>{{ r.programa.nombre }}</td>						
+									<td><a class="btn" href="/ficha/{{r.identificador}}">Ver Ficha</a></td>														
+								</tr>			
+							</tbody>									
+						{% endfor %}			  
+					</table>		    	
+				{% endif %}	
+
+				{% if resultsProgramas %}
+					<table class="table table-hover">
+						<theader>
+							<tr>
+								<th>PROGRAMA</th>
+								<th>CODIGO</th>	
+								<th>AREA</th>	
+								<th></th>				
+							</tr>
+						</theader>
+						{% for r in resultsProgramas %}					
+							<tbody>
+								<tr>
+									<td>{{ r.nombre }}</td>
+									<td>{{ r.codigo }}</td>
+									<td>{{ r.area.nombre }}</td>									
+									<td><a class="btn" href="/fichas_programas/{{r.nombre}}">Ver Fichas</a></td>
+									<td><a class="btn" href="/programa/{{r.nombre}}">Ver Programa</a></td>													
+								</tr>			
+							</tbody>									
+						{% endfor %}			  
+				  	</table>			
+				{% endif %}		    
+				
+			{% else %}
+			  <p>No se encontro ningun programa o ficha solicitado</p>
+			{% endif %}
+		{% endif %}
+		
+		
+	</div>
+	<!--
+	<div >
+		<table class="table table-hover">
+			<theader>
+				<tr>
+					<th>NUMERO DE FICHA</th>
+					<th>PROGRAMA</th>	
+					<th></th>				
+				</tr>
+			</theader>
+			{% for f in fichas  %}
+				<tbody>
+					<tr>
+						<td>{{ f.identificador }}</td>
+						<td>{{ f.programa.nombre }}</td>						
+						<td><a class="btn" href="/ficha/{{f.identificador}}">Ver Ficha</a></td>														
+					</tr>			
+				</tbody>			
+			{% endfor %}
+		</table>	
+	</div>
+	-->
+{% endblock  %}
+

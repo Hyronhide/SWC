@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Fichas 
+{% endblock  %}
+
+{% block content %}
+
+	<div>
+		<head>
+		<title>Consulta:{% if query %} Results{% endif %}</title>
+		</head>
+		<form action="." method="GET">
+			<label for="q">Ficha: </label>
+			<input type="text" name="q" value="{{ query|escape }}" title="ficha">
+			<br>			
+			<button  style="btn" class="btn btn-primary" type="submit" >Buscar </button>
+		</form>
+	</div>
+	<div >
+		{% if query %}
+		<h5>Resultados para "{{ query|escape }}":</h5>
+			{% if results %}			    
+				<table class="table table-hover">
+					<theader>
+						<tr>
+							<th>NUMERO DE FICHA</th>
+							<th>PROGRAMA</th>	
+							<th></th>				
+						</tr>
+					</theader>
+					{% for r in results %}					
+						<tbody>
+							<tr>
+								<td>{{ r.identificador }}</td>
+								<td>{{ r.programa.nombre }}</td>						
+								<td><a class="btn" href="/ficha/{{r.identificador}}">Ver Ficha</a></td>														
+							</tr>			
+						</tbody>									
+					{% endfor %}			  
+			  	</table>
+			{% else %}
+			  <p>No se encontro ninguna ficha</p>
+			{% endif %}
+		{% endif %}
+		<br><br><br><br>
+		{% if mostrar %}
+			<table class="table table-hover">
+				<theader>
+					<tr>
+						<th>NUMERO DE FICHA</th>
+						<th>PROGRAMA</th>	
+						<th></th>				
+					</tr>
+				</theader>
+				{% for f in fichas  %}
+					<tbody>
+						<tr>
+							<td>{{ f.identificador }}</td>
+							<td>{{ f.programa.nombre }}</td>						
+							<td><a class="btn" href="/ficha/{{f.identificador}}">Ver Ficha</a></td>														
+						</tr>			
+					</tbody>			
+				{% endfor %}
+			</table>	
+		{% endif %}		
+	</div>
+	<!--
+	<div >
+		<table class="table table-hover">
+			<theader>
+				<tr>
+					<th>NUMERO DE FICHA</th>
+					<th>PROGRAMA</th>	
+					<th></th>				
+				</tr>
+			</theader>
+			{% for f in fichas  %}
+				<tbody>
+					<tr>
+						<td>{{ f.identificador }}</td>
+						<td>{{ f.programa.nombre }}</td>						
+						<td><a class="btn" href="/ficha/{{f.identificador}}">Ver Ficha</a></td>														
+					</tr>			
+				</tbody>			
+			{% endfor %}
+		</table>	
+	</div>
+	-->
+{% endblock  %}
+

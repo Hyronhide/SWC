@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Programa
+{% endblock %}
+
+{% block content %}
+	
+	<h5>Programa: {{ programa.nombre }}</h5>
+	<br>
+	<p><b>Codigo: </b>{{ programa.codigo }}</p>		
+	<p><b>Duracion: </b>{{ programa.duracion }}</p>
+	<p><b>Version: </b>{{ programa.version }}</p>
+	<p><b>Tipo: </b>{{ programa.tipo }}</p>
+	<p><b>Centro de formacion: </b>{{ programa.centro_formacion }}</p>	
+
+	
+	
+{% endblock  %}	

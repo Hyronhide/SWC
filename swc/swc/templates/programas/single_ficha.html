@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Ficha
+{% endblock %}
+
+{% block content %}
+	<p><h5>FICHA: {{ ficha.identificador }}</h5></p>
+	<br>
+	<p><b>Identificador: </b>{{ ficha.identificador }}</p>
+	<p><b>Identificador unico: </b>{{ ficha.identificador_unico }}</p>		
+	<p><b>Estado: </b>{{ ficha.estado }}</p>
+	<p><b>Jornada: </b>{{ ficha.jornada }}</p>
+	<p><b>Tipo_formacion: </b>{{ ficha.tipo_formacion }}</p>
+	<p><b>Programa: </b>{{ ficha.programa.nombre }}</p>	
+
+	
+	
+{% endblock  %}	

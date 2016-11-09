@@ -1,0 +1,156 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head lang="es">		
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Software Coordinacion</title>
+
+	<!-- Add to homescreen for Chrome on Android -->
+	<meta name="mobile-web-app-capable" content="yes">
+	
+
+	<!-- Add to homescreen for Safari on iOS -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Material Design Lite">
+	
+
+	<!-- Tile icon for Win8 (144x144 + tile color) -->
+	<meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+	<meta name="msapplication-TileColor" content="#3372DF">
+
+	
+
+	<!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+	<!--
+	<link rel="canonical" href="http://www.example.com/">
+	-->
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	  rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/static/css/material.css" media="screen,projection">  
+
+	<link rel="stylesheet" type="text/css" href="/static/css/material.min.css" media="screen,projection">
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css" media="screen,projection">	
+	<link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  	<link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<script  src="/static/js/material.min.js"></script>
+	
+	<style>
+	#view-source {
+	  position: fixed;
+	  display: block;
+	  right: 0;
+	  bottom: 0;
+	  margin-right: 40px;
+	  margin-bottom: 40px;
+	  z-index: 900;
+	}
+	</style>
+
+</head>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">		
+	<!-- -->
+	{% if user.is_authenticated %}
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		  <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+			
+			<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			  <h4 >Software Coordinacion</h4>
+			</div>
+			
+			<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">		  
+			  <a href= "{% url 'vista_areas' %}" class="mdl-layout__tab is-active">Areas</a>
+			  <a href= "{% url 'vista_programas' %}" class="mdl-layout__tab">Programas</a>
+			  <a href=" {% url 'vista_fichas' %}" class="mdl-layout__tab">Fichas</a>
+			  <a href="#" class="mdl-layout__tab">Instructores</a>
+			  <a href=" {% url 'vista_search' %}" class="mdl-layout__tab">Buscar</a>			  
+			  <a href= "{% url 'vista_logout' %}" class="mdl-layout__tab">Cerrar Sesion</a>
+			  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+				<i class="material-icons" role="presentation">search</i>
+				<span class="visuallyhidden">Search</span>
+			  </button>
+			</div>
+		  </header>
+
+		  <main >
+		  	<div >
+		  		{% block content %}
+				{% endblock %}		  					
+			</div>			
+								
+
+			<footer class="mdl-mega-footer">
+			  <div class="mdl-mega-footer--middle-section">
+				<div class="mdl-mega-footer--drop-down-section">
+				  <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+				  <h1 class="mdl-mega-footer--heading">Features</h1>
+				  <ul class="mdl-mega-footer--link-list">
+					<li><a href="#">About</a></li>
+					<li><a href="#">Terms</a></li>
+					<li><a href="#">Partners</a></li>
+					<li><a href="#">Updates</a></li>
+				  </ul>
+				</div>
+				<div class="mdl-mega-footer--drop-down-section">
+				  <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+				  <h1 class="mdl-mega-footer--heading">Details</h1>
+				  <ul class="mdl-mega-footer--link-list">
+					<li><a href="#">Spec</a></li>
+					<li><a href="#">Tools</a></li>
+					<li><a href="#">Resources</a></li>
+				  </ul>
+				</div>
+				<div class="mdl-mega-footer--drop-down-section">
+				  <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+				  <h1 class="mdl-mega-footer--heading">Technology</h1>
+				  <ul class="mdl-mega-footer--link-list">
+					<li><a href="#">How it works</a></li>
+					<li><a href="#">Patterns</a></li>
+					<li><a href="#">Usage</a></li>
+					<li><a href="#">Products</a></li>
+					<li><a href="#">Contracts</a></li>
+				  </ul>
+				</div>
+				<div class="mdl-mega-footer--drop-down-section">
+				  <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+				  <h1 class="mdl-mega-footer--heading">FAQ</h1>
+				  <ul class="mdl-mega-footer--link-list">
+					<li><a href="#">Questions</a></li>
+					<li><a href="#">Answers</a></li>
+					<li><a href="#">Contact us</a></li>
+				  </ul>
+				</div>
+			  </div>
+			  <div class="mdl-mega-footer--bottom-section">
+				<div class="mdl-logo">
+				  More Information
+				</div>
+				<ul class="mdl-mega-footer--link-list">
+				  <li><a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a></li>
+				  <li><a href="#">Help</a></li>
+				  <li><a href="#">Privacy and Terms</a></li>
+				</ul>
+			  </div>
+			</footer>
+		  </main>
+		</div>
+		<a href="https://github.com/google/material-design-lite/blob/master/templates/text-only/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
+		
+	{% else %}			
+		
+		{% block content_inicio %}
+		{% endblock %}
+						
+	{% endif %}
+		
+	
+	
+  
+  
+  </body>
+</html>

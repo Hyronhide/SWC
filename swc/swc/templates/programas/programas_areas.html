@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Programas - Areas 
+{% endblock  %}
+
+{% block content %}
+	<h5>Area: {{area.nombre}}</h5>
+	<div >
+		{% if programas %}
+		<div>
+			<head>
+			<title>Consulta:{% if query %} Results{% endif %}</title>
+			</head>
+			<form action="." method="GET">
+				<label for="q">Programa: </label>
+				<input type="text" name="q" value="{{ query|escape }}" title="programa">
+				<br>			
+				<button  style="btn" class="btn btn-primary" type="submit" >Buscar </button>
+			</form>
+		</div>
+		<div >
+			{% if query %}
+			<h5>Resultados para "{{ query|escape }}":</h5>
+				{% if results %}			    
+					<table class="table table-hover">
+						<theader>
+							<tr>
+								<th>PROGRAMA</th>
+								<th>CODIGO</th>	
+								<th></th>				
+							</tr>
+						</theader>
+						{% for r in results %}					
+							<tbody>
+								<tr>
+									<td>{{ r.nombre }}</td>
+									<td>{{ r.codigo }}</td>												
+									<td><a class="btn" href="/fichas_programas/{{r.nombre}}">Ver Fichas</a></td>
+									<td><a class="btn" href="/programa/{{r.nombre}}">Ver Programa</a></td>													
+								</tr>			
+							</tbody>									
+						{% endfor %}			  
+				  	</table>
+				{% else %}
+				  <p>No se encuentra el programa solicitado</p>
+				{% endif %}
+			{% endif %}
+			<br><br><br><br>
+			{% if mostrar %}
+				<table class="table table-hover">
+					<theader>
+						<tr>
+							<th>PROGRAMA</th>
+							<th>CODIGO</th>	
+							<th></th>				
+						</tr>
+					</theader>
+					{% for p in programas  %}
+						<tbody>
+							<tr>
+								<td>{{ p.nombre }}</td>
+								<td>{{ p.codigo }}</td>												
+								<td><a class="btn" href="/fichas_programas/{{p.nombre}}">Ver Fichas</a></td>
+								<td><a class="btn" href="/programa/{{p.nombre}}">Ver Programa</a></td>													
+							</tr>			
+						</tbody>			
+					{% endfor %}
+				</table>	
+			{% endif %}
+			
+			
+		</div>
+		<!--
+		<table class="table table-hover">
+			<theader>
+				<tr>
+					<th>PROGRAMA</th>
+					<th>CODIGO</th>	
+					<th></th>				
+				</tr>
+			</theader>
+			{% for p in programas  %}
+				<tbody>
+					<tr>
+						<td>{{ p.nombre }} </td>
+						<td>{{ p.codigo }} </td>												
+						<td><a class="btn" href="/fichas_programas/{{p.nombre}}">Ver Fichas</a></td>
+						<td><a class="btn" href="/programa/{{p.nombre}}">Ver Programa</a></td>		
+					</tr>			
+				</tbody>			
+			{% endfor %}
+
+		</table>
+		-->
+		{% else %}
+			<h5>No se encuentrar programas registrados en esta area</h5>	
+		{% endif %}		
+	</div>
+	
+{% endblock  %}
+
